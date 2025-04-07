@@ -1,12 +1,12 @@
-
 import './App.css'
-
+import Map from './components/Map'
 function App() {
 
 
   return (
     <>
-      {/* Weather - Clothing App */}
+      <h1>Click on the map to get Weather & AI advice</h1>
+      <Map />
     </>
   )
 }
