@@ -65,18 +65,6 @@ npm run build
 
 Deploy the /dist folder to Netlify or any static hosting.
 
-# 📦 Folder Structure
-
-src/
-├── components/
-│   ├── AiButton.tsx
-│   ├── LeafletSearchControl.tsx
-│   |── WeatherModal.tsx
-│   |── Map.tsx
-│   └── Footer.tsx
-│
-├── types.t
-└── main.tsx
 
 # ✅ Author
 
