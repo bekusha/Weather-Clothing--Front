@@ -3,7 +3,7 @@ import { useState } from 'react';
 import WeatherModal from "./WeatherModal";
 import axios from 'axios'
 import { ForecastData } from "../types";
-
+import LeafletSearchControl from "./LeafletSearchControl";
 
 
 export default function Map() {
@@ -45,12 +45,20 @@ export default function Map() {
 
 
     return (
-        <div>
-            <MapContainer center={[41.7151, 44.8271]} zoom={8} style={{ height: "90vh", width: "100%" }}>
+        <div style={{
+            height: "70vh",
+            width: "100%",
+            borderRadius: "12px",
+            overflow: "hidden",
+            boxShadow: "0 0 15px rgba(0, 0, 0, 0.3)",
+        }}>
+            <MapContainer center={[41.7151, 44.8271]} zoom={8} style={{ height: "70vh", width: "100%" }}>
+                <LeafletSearchControl onLocationSelect={fetchForecast} />
                 <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
                 <LocationHandler />
 
             </MapContainer>
+
             <WeatherModal open={showWeatherModal}
                 onClose={() => {
                     setShowWeatherModal(false);
