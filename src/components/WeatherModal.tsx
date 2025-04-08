@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import { ForecastData, WeatherModalProps } from '../types';
+import AiButton from './AiButton';
 
 
 const WeatherModal: React.FC<WeatherModalProps> = ({ open, onClose, forecastData }) => {
@@ -61,38 +62,43 @@ const WeatherModal: React.FC<WeatherModalProps> = ({ open, onClose, forecastData
     return (
         <div style={styles.overlay}>
             <div style={styles.modal}>
-                <h2>Location: {forecastData.city.name}</h2>
-                <h3>Next 5 Days Weather</h3>
+                <h3>Location: {forecastData.city.name}</h3>
+                <h4>Next 5 Days Weather</h4>
                 <div style={styles.weatherContainer}>
                     {dailyForecast.map((item, index) => {
                         const date = item.dt_txt.split(" ")[0];
                         const fullDaySlots = groupedForecast[date] || [];
 
                         return (
-                            <div key={index} style={{ background: "#1f1b24", color: "#d1d5db", borderRadius: 10, width: 250 }} >
-                                <div onClick={() => toggleDay(date)} style={{ cursor: 'pointer', padding: '10px', }}>
+                            <div key={index} style={{ background: "#1f1b24", color: "#d1d5db", borderRadius: 10, width: 250, fontSize: 14 }} >
+                                <div onClick={() => toggleDay(date)} style={{ cursor: 'pointer', padding: '10px', position: "relative" }}>
                                     <strong>{item.dt_txt}</strong><br />
-                                    {item.weather[0].description}, {item.main.temp}°C
+                                    {item.weather[0].description}, {item.main.temp}°C    <div style={{ position: "absolute", right: 10, top: 10 }}>🕒</div>
                                 </div>
                                 <div style={{ fontSize: 24 }}>
                                     {getWeatherIcon(item.weather[0].description)}
                                 </div>
 
                                 {openDay === date && (
-                                    <div style={{ padding: 10, marginTop: 5, position: "absolute", background: "#1f1b24", borderRadius: 12 }}>
-                                        {fullDaySlots.map((slot, idx) => (
-                                            <div key={idx} style={{ marginBottom: 5 }}>
-                                                🕒 {slot.dt_txt.split(' ')[1]} - {slot.weather[0].description}, {slot.main.temp}°C
-                                            </div>
-                                        ))}
+                                    <div style={{ position: "relative" }}>
+                                        <div style={{ width: 270, padding: 10, marginTop: 5, position: "absolute", top: 10, background: "#1f1b24", borderRadius: 12, zIndex: 999 }}>
+                                            {fullDaySlots.map((slot, idx) => (
+                                                <div key={idx} style={{ marginBottom: 5, textAlign: "start" }}>
+                                                    {slot.dt_txt.split(' ')[1]} - <span style={{ color: "#a78bfa" }}>{slot.weather[0].description}, {slot.main.temp}°C</span>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
-
                                 )
                                 }
                             </div>
                         );
                     })}
                 </div>
+                <AiButton forecastData={{
+                    city: forecastData.city,
+                    list: dailyForecast,
+                }} />
                 <button style={styles.closeBtn} onClick={onClose}>X</button>
             </div>
         </div >
@@ -106,9 +112,10 @@ const styles = {
     overlay: {
         position: 'fixed' as const,
         top: 0, left: 0, right: 0, bottom: 0,
-        backgroundColor: 'rgba(0,0,0,0.5)',
+        backgroundColor: 'rgba(0,0,0,0.9)',
         display: 'flex', justifyContent: 'center', alignItems: 'center',
         zIndex: 1000,
+        transparency: "0%"
     },
     modal: {
         backgroundColor: '#0e0e10',
@@ -122,6 +129,7 @@ const styles = {
         display: "flex",
         flexDirection: "column" as const,
         alignItems: "center",
+        overflow: "scroll"
     },
     weatherContainer: {
         display: "flex",
@@ -132,9 +140,13 @@ const styles = {
     },
     closeBtn: {
         position: 'absolute' as const,
-        top: 30,
-        right: 40,
+        padding: 15,
+        top: 20,
+        right: 20,
         fontSize: 16,
         cursor: 'pointer',
+        background: "black",
+        color: '#a78bfa',
+        border: 'none', borderRadius: 6
     },
 };

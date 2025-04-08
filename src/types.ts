@@ -20,5 +20,9 @@ export interface ForecastData {
   export interface WeatherModalProps {
     open: boolean;
     onClose: () => void;
-    forecastData: any;
+    forecastData: ForecastData;
 }
+
+export type AiButtonProps = {
+  forecastData:ForecastData
+};

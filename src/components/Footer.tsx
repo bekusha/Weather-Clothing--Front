@@ -1,4 +1,4 @@
-// create simple footer component
+
 import React from 'react';
 
 const Footer: React.FC = () => {
@@ -15,6 +15,7 @@ const styles = {
     footer: {
         display: "flex",
         justifyContent: "center",
+        zIndex: 1200
     },
     text: {
         color: '#a78bfa',

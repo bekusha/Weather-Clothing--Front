@@ -3,8 +3,6 @@
 .appContainer{
   display: flex;
   flex-direction: column;
-  background-color: black;
-  height: 100vh;
   padding: 20px;
   font-family:sans-serif;
   letter-spacing: 0.5px;
@@ -25,6 +23,7 @@
 .mapContainer {
   border-radius: 12px;
   overflow: hidden; 
+
 }
 
 .footerContainer{
@@ -33,16 +32,3 @@
   bottom:0;
 }
 
-@media screen and (min-width: 900px) {
-  .App {
-    flex-direction: row;
-  }
-
-  .headersContainer{
-    width: 30%;
-  }
-
-  .mapContainer{
-    width: 70%;
-  }
-}
