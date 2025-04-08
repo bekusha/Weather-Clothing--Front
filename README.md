@@ -1,54 +1,83 @@
-# React + TypeScript + Vite
+# React Map, Weather & AI Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the React frontend for the Weather + AI camping planner app. It allows users to:
 
-Currently, two official plugins are available:
+Select a location on a map
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+View 5-day weather forecast
 
-## Expanding the ESLint configuration
+Get AI-generated travel advice based on the forecast
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# 🌍 Features
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Interactive map using Leaflet
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Location search via leaflet-geosearch
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Weather data from OpenWeatherMap API
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+AI integration to suggest travel plans with React Markdown rendering
+
+# 🧱 Tech Stack
+
+React 19
+
+Leaflet / React-Leaflet
+
+Axios
+
+React Markdown
+
+TypeScript (recommended)
+
+# 📦 Dependencies
+
+"axios": "^1.8.4",
+"leaflet": "^1.9.4",
+"leaflet-geosearch": "^4.2.0",
+"react": "^19.0.0",
+"react-dom": "^19.0.0",
+"react-leaflet": "^5.0.0",
+"react-markdown": "^10.1.0"
+
+# 🚀 Getting Started
+
+git clone https://github.com/bekusha/Weather-Clothing--Front.git
+cd frontend
+npm install
+
+# Add your API key in a .env file
+VITE_WEATHER_API_KEY=your_openweathermap_api_key
+VITE_API_BASE_URL=your_base_api_url
+
+# Start development server
+npm run dev
+
+🔐 Environment Variables
+
+Make sure to create a .env file:
+
+VITE_WEATHER_API_KEY=your_api_key_here
+
+# 🛠 Build
+
+npm run build
+
+Deploy the /dist folder to Netlify or any static hosting.
+
+# 📦 Folder Structure
+
+src/
+├── components/
+│   ├── AiButton.tsx
+│   ├── LeafletSearchControl.tsx
+│   |── WeatherModal.tsx
+│   |── Map.tsx
+│   └── Footer.tsx
+│
+├── types.t
+└── main.tsx
+
+# ✅ Author
+
+Made by [Beka Jorjikia - beka.jorjikia@gmail.com]
